@@ -5,19 +5,19 @@ import { externalSchematic, Rule, SchematicContext, Tree } from '@angular-devkit
 // per file.
 export function newProject(_options: any): Rule {
 
-  const projName = _options.name
-  console.log('The name of the repo will be', projName)
+  //const projName = _options.name;
+  const cliVersion = _options.cliVersion ?? '15.0.0';
+  console.log('The name of the repo will be: ', cliVersion);
 
   return (_tree: Tree, _context: SchematicContext) => {
     return externalSchematic('@schematics/angular', 'ng-new', {
-      projName,
-      version: '9.0.0',
-      directory: projName,
+      version: cliVersion,
       routing: true,
       style: 'scss',
       inlineStyle: false,
       inlineTemplate: false,
-      packageManager: 'yarn'
+      packageManager: 'yarn',
+      skipInstall: true
     });
   };
 }
