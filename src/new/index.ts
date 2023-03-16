@@ -21,3 +21,17 @@ export function newProject(_options: any): Rule {
     });
   };
 }
+
+function addESLint(): Rule {
+  return (_tree: Tree, _context: SchematicContext) => {
+    return externalSchematic('@schematics/angular', 'ng-add', {
+      version: cliVersion,
+      routing: true,
+      style: 'scss',
+      inlineStyle: false,
+      inlineTemplate: false,
+      packageManager: 'yarn',
+      skipInstall: true
+    });
+  };
+}
